@@ -34,3 +34,20 @@ export interface TaskFilterProps {
   }) => void;
 }
 
+
+//TaskForm
+
+// Task id will be generated whena task is added 
+//status will automatically start as "pending"
+
+export interface TaskFormData{
+  title :string;
+  description:string,
+  priority:"low" | "medium" |"high";
+  dueDate : string;
+}
+
+export interface TaskFormProps{
+  onAddTask:(taskData:TaskFormData)=>void;
+}
+
