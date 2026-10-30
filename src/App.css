@@ -1,0 +1,83 @@
+
+h2 {
+  margin-bottom: 40px;
+}
+
+
+/* .task-filter, */
+/* .task-list, */
+/* .tasklist-box, */
+.task-item{
+  border: 2px solid white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+
+.task-status {
+display: flex;
+justify-content: flex-end;
+align-items: center;
+gap: 8px;
+}
+
+.task-item {
+text-align: left;
+}
+
+.task-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 16px;
+}
+
+.task-item h2 {
+  margin-bottom: 16px;
+}
+
+.task-item p {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.task-details p {
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-controls > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Apply different text colors based on task priority. */
+
+.priority-low {
+    color: green;
+}
+
+.priority-medium {
+    color: orange;
+}
+
+.priority-high {
+    color: red;
+}
+
+/* Use red to distinguish the delete action. */ .delete-button { background-color: red; color: white; }
+
