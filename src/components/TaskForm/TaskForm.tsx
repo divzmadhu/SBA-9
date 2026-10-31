@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { TaskFormProps } from "../../types";
 
 export default function TaskForm(props: TaskFormProps) {
@@ -6,6 +6,16 @@ export default function TaskForm(props: TaskFormProps) {
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
     const [dueDate, setDueDate] = useState("");
+
+    // Populate the form fields with the selected task details when editing.
+    useEffect(() => {
+        if (props.taskToEdit) {
+            setTitle(props.taskToEdit.title);
+            setDescription(props.taskToEdit.description);
+            setPriority(props.taskToEdit.priority);
+            setDueDate(props.taskToEdit.dueDate);
+        }
+    }, [props.taskToEdit]);
 
 
     // Function to reset all form fields to their initial values
@@ -31,18 +41,22 @@ export default function TaskForm(props: TaskFormProps) {
             alert("Please enter a task title and a due Date.");
             return;
         }
-
-        props.onAddTask(taskData);
+        if (props.taskToEdit) {
+            // Update the selected task
+            props.onUpdateTask(props.taskToEdit.id, taskData);
+        } else {
+            // Add a new task
+            props.onAddTask(taskData);
+        }
 
         resetForm();
-
 
     }
 
     return (
 
         <form className="task-form" onSubmit={handleSubmit}>
-            <h2>Add New Task</h2>
+            <h2>{props.taskToEdit ? "Edit Task" : "Add New Task"}</h2>
 
             <div className="form-top-row">
                 <div className="form-group">
@@ -91,7 +105,9 @@ export default function TaskForm(props: TaskFormProps) {
             </div>
 
 
-            <button type="submit">Add Task</button>
+            <button type="submit">
+                {props.taskToEdit ? "Confirm Edit" : "Add Task"}
+            </button>
 
 
 

@@ -51,5 +51,9 @@ export interface TaskFormData{
 
 export interface TaskFormProps{
   onAddTask:(taskData:TaskFormData)=>void;
+  onUpdateTask: (taskId: string, taskData: TaskFormData) => void;
+  taskToEdit?: Task;
 }
+
+
 

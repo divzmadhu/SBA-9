@@ -86,6 +86,7 @@ export default function App() {
 
   // for implementing the Edit Existing Tasks
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const taskToEdit = tasks.find((task) => task.id === editingTaskId);
 
   // const [filters, setFilters] = useState<{ status?: TaskStatus }>({});
 
@@ -125,7 +126,7 @@ export default function App() {
   // Function to handle edit task
   function handleEdit(taskId: string) {
     setEditingTaskId(taskId);
-}
+  }
 
 
   // Function to handle form submission
@@ -137,6 +138,19 @@ export default function App() {
     };
 
     setTasks((currentTasks) => [...currentTasks, task]);
+  }
+
+  // Function to update an existing task
+  function handleUpdateTask(taskId: string, taskData: TaskFormData) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, ...taskData }
+          : task
+      )
+    );
+
+    setEditingTaskId(null);
   }
   return (
     <div>
@@ -158,17 +172,15 @@ export default function App() {
             onDelete={handleDelete}
           />
 
-          {/* <TaskList
-            tasks={filteredTasks}
-            onStatusChange={handleStatusChange}
-            onDelete={handleDelete}
-          /> */}
-
         </div>
 
       </div>
       <div className="task-form-container" >
-        <TaskForm onAddTask={handleAddTask} />
+        <TaskForm
+          onAddTask={handleAddTask}
+          onUpdateTask={handleUpdateTask}
+          taskToEdit={taskToEdit}
+        />
       </div>
     </div>
 
