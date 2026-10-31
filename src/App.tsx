@@ -2,7 +2,8 @@ import './App.css';
 import { useState } from "react";
 import TaskList from "./components/TaskList/TaskList";
 import TaskFilter from "./components/TaskFilter/TaskFilter";
-import type { Task, TaskStatus } from "./types";
+import TaskForm from './components/TaskForm/TaskForm';
+import type { Task, TaskStatus, TaskFormData } from "./types";
 
 export default function App() {
 
@@ -117,6 +118,18 @@ export default function App() {
       currentTasks.filter((task) => task.id !== taskId)
     );
   }
+
+
+  // Function to handle form submission
+  function handleAddTask(newTask: TaskFormData) {
+    const task: Task = {
+      ...newTask,
+      id: Date.now().toString(),
+      status: "pending"
+    };
+
+    setTasks((currentTasks) => [...currentTasks, task]);
+  }
   return (
     <div>
       {/* <h1>Lab 3- Lists, Keys, and Conditionals</h1> */}
@@ -127,6 +140,7 @@ export default function App() {
 
 
         <TaskFilter onFilterChange={(newFilters) => setFilters(newFilters)} />
+          
         <div className="tasklist-box">
           <TaskList
             tasks={filteredTasks}
@@ -144,6 +158,10 @@ export default function App() {
         </div>
 
       </div>
+      <div className="task-form-container" >
+        <TaskForm onAddTask={handleAddTask} />
+      </div>
     </div>
+
   );
 }

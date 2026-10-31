@@ -36,31 +36,28 @@ export default function TaskForm(props: TaskFormProps) {
 
         resetForm();
 
-       
+
     }
 
     return (
-        <form className="task-form" onSubmit = {handleSubmit}>
-            <h3>Add New Task</h3>
-            <div>
-                <label htmlFor="task-title"> Task Title</label>
-                <input
-                    type="text"
-                    id="task-title"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                />
 
-                <div>
-                    <label htmlFor="task-description">Description:</label>
-                    <textarea
-                        id="task-description"
-                        value={description}
-                        onChange={(event) => setDescription(event.target.value)}
+        <form className="task-form" onSubmit={handleSubmit}>
+            <h2>Add New Task</h2>
+
+            <div className="form-top-row">
+                <div className="form-group">
+                    <label htmlFor="task-title"> Task Title</label>
+                    <input
+                        type="text"
+                        id="task-title"
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
                     />
                 </div>
 
-                <div>
+
+
+                <div className="form-group">
                     <label htmlFor="task-priority">Priority:</label>
                     <select
                         id="task-priority"
@@ -73,7 +70,7 @@ export default function TaskForm(props: TaskFormProps) {
                     </select>
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor="task-due-date">Due Date:</label>
                     <input
                         type="date"
@@ -83,11 +80,22 @@ export default function TaskForm(props: TaskFormProps) {
                     />
                 </div>
 
-                <button type = "submit">Add Task</button>
-
+            </div>
+            <div className="form-group">
+                <label htmlFor="task-description">Description:</label>
+                <textarea
+                    id="task-description"
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
+                />
             </div>
 
-        </form>
+
+            <button type="submit">Add Task</button>
+
+
+
+        </form >
 
     );
 }
