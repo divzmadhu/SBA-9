@@ -1,39 +1,39 @@
-Lab 3
-Lists, Keys, and Conditionals
+# WorkTrack – Task Management Dashboard
 
-### TaskFlow – Task Management App
-## Overview
+## Project Overview
 
-TaskFlow is a task management application built with React, TypeScript, and CSS. It allows users to view tasks, filter them by status and priority, update task statuses, and delete tasks.
+WorkTrack is a task management dashboard built using React, TypeScript, and CSS. It allows users to view, manage, filter, and add tasks through a simple interface.
 
-Features
-Display Tasks: Displays a list of tasks with their titles, descriptions, priorities, due dates, and statuses.
-Filter Tasks: Filter tasks by status, priority, or both at the same time.
-Update Task Status: Change a task's status to Pending, In Progress, or Completed.
-Delete Tasks: Remove tasks from the list.
-Conditional Rendering: Displays appropriate messages when there are no tasks or when no tasks match the selected filters.
-Priority Styling: Uses different text colors to distinguish low-, medium-, and high-priority tasks.
+## Features Implemented
 
-### Reflection Questions 
+1. **Task List:** Displays tasks with their title, description, priority, due date, and status.
+2. **Task Status Update:** Allows users to change the status of a task.
+3. **Delete Tasks:** Allows users to remove tasks from the list.
+4. **Filter Tasks:** Filters tasks by status and priority.
+5. **Add New Task:** Provides a form to add new tasks.
+6. **Form Validation:** Checks that the task title and due date are entered before submission.
+7. **Form Reset:** Clears the form fields after successfully adding a task.
+8. **Styling:** Added separate containers, improved form alignment, and styled the Add Task button.
 
-### 1. How did you ensure unique keys for your list items?
+## Technologies Used
 
-I used the `id` of each task as the key when displaying the list of tasks. Since each task has its own unique ID, React can identify each task correctly when the list changes. This also helps React keep track of tasks when I delete a task or change its status.
+* React
+* TypeScript
+* HTML
+* CSS
+* Vite
 
-### 2. What considerations did you make when implementing the filtering functionality?
+## What I Learned
 
-I implemented two filters: one for task status and another for priority. I wanted users to filter tasks by status, priority, or both together. Initially, changing one filter replaced the other filter. I fixed this by using `useState` to keep track of the selected status and priority separately. I also handled the All Statuses and All Priorities options so users can clear a filter without accidentally clearing the other one.
+1. Creating and organizing React components.
+2. Passing data between components using props.
+3. Managing component data using `useState`.
+4. Handling form inputs and form submissions.
+5. Updating and deleting items from an array.
+6. Implementing filtering functionality.
+7. Using TypeScript interfaces and types.
+8. Applying CSS Flexbox for layout and alignment.
 
-### 3. How did you handle state updates for task status changes?
+## Current Progress
 
-I used a function called `handleStatusChange` in `App.tsx` to update a task's status. I used `map()` to go through the tasks and find the task with the matching ID. If the ID matches, I return an updated task with the new status; otherwise, I keep the task unchanged. This updates the task without directly modifying the original array.
-
-### 4. What challenges did you face when implementing conditional rendering?
-
-One challenge was deciding what message to display when no tasks were shown. I needed to distinguish between having no tasks in the list and having tasks that did not match the selected filters. I used the total number of tasks and the filtered task list to handle these situations separately. This helped me display a more meaningful message depending on the situation.
-
-
-### Future Improvements
-Add the ability to create new tasks.
-Add the ability to edit task details.
-Save tasks so they remain available after refreshing the page.
+The task creation, filtering, status update, and delete functionalities are implemented. Additional dashboard features and improvements are still in progress.
