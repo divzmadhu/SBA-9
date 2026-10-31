@@ -84,6 +84,9 @@ export default function App() {
 
   ]);
 
+  // for implementing the Edit Existing Tasks
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+
   // const [filters, setFilters] = useState<{ status?: TaskStatus }>({});
 
   const [filters, setFilters] = useState<{
@@ -119,6 +122,11 @@ export default function App() {
     );
   }
 
+  // Function to handle edit task
+  function handleEdit(taskId: string) {
+    setEditingTaskId(taskId);
+}
+
 
   // Function to handle form submission
   function handleAddTask(newTask: TaskFormData) {
@@ -140,12 +148,13 @@ export default function App() {
 
 
         <TaskFilter onFilterChange={(newFilters) => setFilters(newFilters)} />
-          
+
         <div className="tasklist-box">
           <TaskList
             tasks={filteredTasks}
             totalTasks={tasks.length}
             onStatusChange={handleStatusChange}
+            onEdit={handleEdit}
             onDelete={handleDelete}
           />
 

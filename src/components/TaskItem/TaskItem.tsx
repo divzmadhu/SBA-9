@@ -48,12 +48,21 @@ export default function TaskItem(props: TaskItemProps) {
                 </div>
 
                 {/* Style the delete button to stand out. */}
-                <button className="delete-button"
-                    onClick={() => props.onDelete(props.task.id)}>
-                    Delete
-                </button>
+
+                <div className="task-actions">
+
+                    <button className="edit-button"
+                        onClick={() => props.onEdit(props.task.id)}>
+                        Edit
+                    </button>
+
+                    <button className="delete-button"
+                        onClick={() => props.onDelete(props.task.id)}>
+                        Delete
+                    </button>
 
 
+                </div>
             </div>
         </>
 

@@ -19,6 +19,7 @@ export default function TaskList(props: TaskListProps) {
                         key={task.id}
                         task={task}
                         onStatusChange={props.onStatusChange}
+                        onEdit={props.onEdit}
                         onDelete={props.onDelete}
                     />
                 ))

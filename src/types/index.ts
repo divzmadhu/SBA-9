@@ -16,6 +16,7 @@ export interface TaskListProps {
   // Total number of tasks before filtering, used to display the correct empty-state message.
   totalTasks: number;  
   onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
+  onEdit: (taskId: string) => void;
   onDelete: (taskId: string) => void;
 }
 
@@ -24,6 +25,7 @@ export interface TaskItemProps {
   task: Task;
   onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
   onDelete: (taskId: string) => void;
+  onEdit: (taskId: string) => void;
 }
 
 // TaskFilter

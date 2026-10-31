@@ -82,8 +82,18 @@ gap: 16px;
 
 /* Use red to distinguish the delete action. */ 
 .delete-button { 
-  background-color: red; color: white;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
 }
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
 
 .add-task-container {
   margin: 30px auto;
@@ -153,4 +163,22 @@ gap: 16px;
 .form-top-row > .form-group {
   flex: 1;
   min-width: 0;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button {
+  background-color: teal;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #115e59;
 }
