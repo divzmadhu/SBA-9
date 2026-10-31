@@ -183,13 +183,10 @@ gap: 16px;
   background-color: #115e59;
 }
 
-.task-search {
-    margin: 20px 0;
-}
-
-.task-search input {
-    width: 100%;
-    padding: 10px;
+.filter-search input {
+    width: 220px;
+    max-width: 100%;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;

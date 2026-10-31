@@ -1,7 +1,7 @@
 
 // TaskList
 export type TaskStatus = 'pending' | 'in-progress' | 'completed';
- 
+
 export interface Task {
   id: string;
   title: string;
@@ -10,11 +10,11 @@ export interface Task {
   priority: 'low' | 'medium' | 'high';
   dueDate: string;
 }
- 
+
 export interface TaskListProps {
-  tasks: Task[];  
+  tasks: Task[];
   // Total number of tasks before filtering, used to display the correct empty-state message.
-  totalTasks: number;  
+  totalTasks: number;
   onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
   onEdit: (taskId: string) => void;
   onDelete: (taskId: string) => void;
@@ -34,6 +34,8 @@ export interface TaskFilterProps {
     status?: TaskStatus;
     priority?: 'low' | 'medium' | 'high';
   }) => void;
+  searchTerm: string;
+  onSearchChange: (value: string) => void;
 }
 
 
@@ -42,15 +44,15 @@ export interface TaskFilterProps {
 // Task id will be generated whena task is added 
 //status will automatically start as "pending"
 
-export interface TaskFormData{
-  title :string;
-  description:string,
-  priority:"low" | "medium" |"high";
-  dueDate : string;
+export interface TaskFormData {
+  title: string;
+  description: string,
+  priority: "low" | "medium" | "high";
+  dueDate: string;
 }
 
-export interface TaskFormProps{
-  onAddTask:(taskData:TaskFormData)=>void;
+export interface TaskFormProps {
+  onAddTask: (taskData: TaskFormData) => void;
   onUpdateTask: (taskId: string, taskData: TaskFormData) => void;
   taskToEdit?: Task;
 }

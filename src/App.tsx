@@ -169,17 +169,13 @@ export default function App() {
         {/* <h3>Task List</h3> */}
 
 
-        <TaskFilter onFilterChange={(newFilters) => setFilters(newFilters)} />
+        <TaskFilter
+          onFilterChange={(newFilters) => setFilters(newFilters)}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
 
-        <div className="task-search">
-          <input
-            type="text"
-            placeholder="Search tasks by title or description..."
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
-        </div>
-
+       
         <div className="tasklist-box">
           <TaskList
             tasks={filteredTasks}

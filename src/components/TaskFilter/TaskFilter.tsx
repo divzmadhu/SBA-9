@@ -52,22 +52,23 @@ export default function TaskFilter(props: TaskFilterProps) {
                                 priority: priority || undefined
                             });
                         }}
-                    //     onChange={(event) => {
-                    //         const priority = event.target.value as
-                    //             "low" | "medium" | "high";
 
-                    //         if (priority === "") {
-                    //             props.onFilterChange({});
-                    //         } else {
-                    //             props.onFilterChange({ priority });
-                    //         }
-                    //     }}
                     >
                         <option value="">All Priorities</option>
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
                     </select>
+                </div>
+                <div className="filter-search">
+                    <label htmlFor="task-search">Search:</label>
+                    <input
+                        id="task-search"
+                        type="text"
+                        placeholder="Search tasks..."
+                        value={props.searchTerm}
+                        onChange={(event) => props.onSearchChange(event.target.value)}
+                    />
                 </div>
             </div>
         </div >
