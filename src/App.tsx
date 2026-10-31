@@ -95,6 +95,9 @@ export default function App() {
     priority?: "low" | "medium" | "high";
   }>({});
 
+  // Stores the text entered in the task search box
+  const [searchTerm, setSearchTerm] = useState("");
+
   // const filteredTasks = tasks.filter((task) => {
   //   return !filters.status || task.status === filters.status;
   // });
@@ -102,7 +105,12 @@ export default function App() {
   const filteredTasks = tasks.filter((task) => {
     return (
       (!filters.status || task.status === filters.status) &&
-      (!filters.priority || task.priority === filters.priority)
+      (!filters.priority || task.priority === filters.priority) &&
+      (
+        !searchTerm ||
+        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.description.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     );
   });
 
@@ -162,6 +170,15 @@ export default function App() {
 
 
         <TaskFilter onFilterChange={(newFilters) => setFilters(newFilters)} />
+
+        <div className="task-search">
+          <input
+            type="text"
+            placeholder="Search tasks by title or description..."
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
+        </div>
 
         <div className="tasklist-box">
           <TaskList
