@@ -4,6 +4,7 @@ import TaskList from "./components/TaskList/TaskList";
 import TaskFilter from "./components/TaskFilter/TaskFilter";
 import TaskForm from './components/TaskForm/TaskForm';
 import type { Task, TaskStatus, TaskFormData } from "./types";
+import DashboardStats from "./components/DashboardStats/DashboardStats";
 
 export default function App() {
 
@@ -114,6 +115,21 @@ export default function App() {
     );
   });
 
+
+  // Calculate dashboard statistics
+  const totalTasks = tasks.length;
+
+  const pendingTasks = tasks.filter(
+    (task) => task.status === "pending"
+  ).length;
+
+  const inProgressTasks = tasks.filter(
+    (task) => task.status === "in-progress"
+  ).length;
+
+  const completedTasks = tasks.filter(
+    (task) => task.status === "completed"
+  ).length;
   // Function to update the task status
   function handleStatusChange(taskId: string, newStatus: TaskStatus) {
     setTasks((currentTasks) =>
@@ -168,6 +184,13 @@ export default function App() {
       <div className="task-list">
         {/* <h3>Task List</h3> */}
 
+        <DashboardStats
+          totalTasks={totalTasks}
+          pendingTasks={pendingTasks}
+          inProgressTasks={inProgressTasks}
+          completedTasks={completedTasks}
+        />
+
 
         <TaskFilter
           onFilterChange={(newFilters) => setFilters(newFilters)}
@@ -175,7 +198,7 @@ export default function App() {
           onSearchChange={setSearchTerm}
         />
 
-       
+
         <div className="tasklist-box">
           <TaskList
             tasks={filteredTasks}
