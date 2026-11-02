@@ -1,11 +1,10 @@
 import { useState } from "react";
-import type { TaskFilterProps, TaskStatus, SortOption } from "../../types";
+import type { TaskFilterProps, TaskStatus, TaskPriority, SortOption } from "../../types";
 
 export default function TaskFilter(props: TaskFilterProps) {
     const [selectedStatus, setSelectedStatus] = useState<TaskStatus | "">("");
     const [selectedPriority, setSelectedPriority] = useState<
-        "low" | "medium" | "high" | ""
-    >("");
+       TaskPriority | "">("");
 
     return (
 
@@ -41,7 +40,7 @@ export default function TaskFilter(props: TaskFilterProps) {
                     <select
                         id="priority-filter"
                         onChange={(event) => {
-                            const priority = event.target.value as "low" | "medium" | "high" | "";
+                            const priority = event.target.value as TaskPriority | "";
                             setSelectedPriority(priority);
 
                             props.onFilterChange({
@@ -67,7 +66,7 @@ export default function TaskFilter(props: TaskFilterProps) {
                         value={props.sortBy}
                         onChange={(event) =>
                             props.onSortChange(
-                                // event.target.value as "dueDate" | "priority" | "title"
+                               
                                 event.target.value as SortOption
                             )
                         }
