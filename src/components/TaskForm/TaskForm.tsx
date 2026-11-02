@@ -7,6 +7,10 @@ export default function TaskForm(props: TaskFormProps) {
     const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
     const [dueDate, setDueDate] = useState("");
 
+    // Store validation error messages for the form fields
+    const [titleError, setTitleError] = useState("");
+    const [dueDateError, setDueDateError] = useState("");
+
     // Populate the form fields with the selected task details when editing.
     useEffect(() => {
         if (props.taskToEdit) {
@@ -24,6 +28,8 @@ export default function TaskForm(props: TaskFormProps) {
         setDescription("");
         setPriority("medium");
         setDueDate("");
+        setTitleError("");
+        setDueDateError("");
     }
 
     //Creating a handleSubmit function that will run when the user submits by clicking the Add Task button
@@ -37,8 +43,29 @@ export default function TaskForm(props: TaskFormProps) {
             dueDate: dueDate
         }
 
-        if (!title.trim() || !dueDate) {
-            alert("Please enter a task title and a due Date.");
+        // if (!title.trim() || !dueDate) {
+        //     alert("Please enter a task title and a due Date.");
+        //     return;
+        // }
+
+        // Clear previous validation errors
+        setTitleError("");
+        setDueDateError("");
+
+        // Validate required fields
+        let isValid = true;
+
+        if (!title.trim()) {
+            setTitleError("Task title is required.");
+            isValid = false;
+        }
+
+        if (!dueDate) {
+            setDueDateError("Due date is required.");
+            isValid = false;
+        }
+
+        if (!isValid) {
             return;
         }
         if (props.taskToEdit) {
@@ -65,8 +92,12 @@ export default function TaskForm(props: TaskFormProps) {
                         type="text"
                         id="task-title"
                         value={title}
-                        onChange={(event) => setTitle(event.target.value)}
+                        onChange={(event) => {
+                            setTitle(event.target.value);
+                            setTitleError("");
+                        }}
                     />
+                    {titleError && <p className="error-message">{titleError}</p>}
                 </div>
 
 
@@ -90,8 +121,12 @@ export default function TaskForm(props: TaskFormProps) {
                         type="date"
                         id="task-due-date"
                         value={dueDate}
-                        onChange={(event) => setDueDate(event.target.value)}
+                        onChange={(event) => {
+                            setDueDate(event.target.value);
+                            setDueDateError("");
+                        }}
                     />
+                    {dueDateError && <p className="error-message">{dueDateError}</p>}
                 </div>
 
             </div>
