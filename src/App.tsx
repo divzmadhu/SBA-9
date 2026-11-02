@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from "react";
+import { filterTasks } from "./utils/taskUtils";
 import TaskList from "./components/TaskList/TaskList";
 import TaskFilter from "./components/TaskFilter/TaskFilter";
 import TaskForm from './components/TaskForm/TaskForm';
@@ -123,17 +124,7 @@ export default function App() {
   //   return !filters.status || task.status === filters.status;
   // });
 
-  const filteredTasks = tasks.filter((task) => {
-    return (
-      (!filters.status || task.status === filters.status) &&
-      (!filters.priority || task.priority === filters.priority) &&
-      (
-        !searchTerm ||
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  });
+  const filteredTasks = filterTasks(tasks, filters, searchTerm);
 
 
   // Sort filtered tasks by due date, priority, or title
