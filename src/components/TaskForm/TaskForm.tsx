@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import type { TaskFormProps, TaskPriority } from "../../types";
+import { validateTaskForm } from "../../utils/validationUtils";
 
 export default function TaskForm(props: TaskFormProps) {
     const [title, setTitle] = useState("");
@@ -43,27 +44,15 @@ export default function TaskForm(props: TaskFormProps) {
             dueDate: dueDate
         }
 
-        
-        // Clear previous validation errors
-        setTitleError("");
-        setDueDateError("");
+        const errors = validateTaskForm(title, dueDate);
 
-        // Validate required fields
-        let isValid = true;
+        setTitleError(errors.titleError);
+        setDueDateError(errors.dueDateError);
 
-        if (!title.trim()) {
-            setTitleError("Task title is required.");
-            isValid = false;
-        }
-
-        if (!dueDate) {
-            setDueDateError("Due date is required.");
-            isValid = false;
-        }
-
-        if (!isValid) {
+        if (errors.titleError || errors.dueDateError) {
             return;
         }
+        
         if (props.taskToEdit) {
             // Update the selected task
             props.onUpdateTask(props.taskToEdit.id, taskData);
