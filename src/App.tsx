@@ -6,6 +6,7 @@ import TaskForm from './components/TaskForm/TaskForm';
 import type { Task, TaskStatus, TaskFormData } from "./types";
 import DashboardStats from "./components/DashboardStats/DashboardStats";
 
+
 export default function App() {
 
   const [tasks, setTasks] = useState<Task[]>(() => {
@@ -98,6 +99,8 @@ export default function App() {
     localStorage.setItem("worktrack-tasks", JSON.stringify(tasks));
   }, [tasks]);
 
+
+
   // for implementing the Edit Existing Tasks
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
   const taskToEdit = tasks.find((task) => task.id === editingTaskId);
@@ -111,6 +114,9 @@ export default function App() {
 
   // Stores the text entered in the task search box
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Stores the selected sorting option
+  const [sortBy, setSortBy] = useState("dueDate");
 
   // const filteredTasks = tasks.filter((task) => {
   //   return !filters.status || task.status === filters.status;
@@ -126,6 +132,30 @@ export default function App() {
         task.description.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
+  });
+
+
+  // Sort filtered tasks by due date, priority, or title
+  const sortedTasks = [...filteredTasks].sort((a, b) => {
+    if (sortBy === "dueDate") {
+      return a.dueDate.localeCompare(b.dueDate);
+    }
+
+    if (sortBy === "priority") {
+      const priorityOrder = {
+        high: 1,
+        medium: 2,
+        low: 3
+      };
+
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
+    }
+
+    if (sortBy === "title") {
+      return a.title.localeCompare(b.title);
+    }
+
+    return 0;
   });
 
 
@@ -211,10 +241,24 @@ export default function App() {
           onSearchChange={setSearchTerm}
         />
 
+        <div className="task-sort">
+          <label htmlFor="sort-tasks">Sort by:</label>
+          <select
+            id="sort-tasks"
+            value={sortBy}
+            onChange={(event) => setSortBy(event.target.value)}
+          >
+            <option value="dueDate">Due Date</option>
+            <option value="priority">Priority</option>
+            <option value="title">Title</option>
+          </select>
+        </div>
+
 
         <div className="tasklist-box">
           <TaskList
-            tasks={filteredTasks}
+            // tasks={filteredTasks}
+            tasks={sortedTasks}
             totalTasks={tasks.length}
             onStatusChange={handleStatusChange}
             onEdit={handleEdit}

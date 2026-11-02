@@ -38,7 +38,11 @@ WorkTrack is a task management dashboard built using React, TypeScript, and CSS.
 
 The task creation, filtering, status update, and delete functionalities are implemented. Additional dashboard features and improvements are still in progress.
 
+### Sample Data and Local Storage
 
-### Sample Data
-Added sample tasks to simulate a real-world project planning scenario, including task titles, descriptions, priorities, statuses, and due dates.
-Included the task assignee in the description for now. A separate assignee field may be added as a future enhancement.
+* Added 9 sample tasks in `App.tsx` to demonstrate a project planning workflow.
+* Sample tasks are loaded when the application is opened for the first time.
+* Tasks are saved in the browser's Local Storage whenever they are added, edited, or deleted.
+* On subsequent visits, the application loads the previously saved tasks instead of the initial sample data.
+* The task assignee is currently included in the description rather than maintained as a separate field.
+
