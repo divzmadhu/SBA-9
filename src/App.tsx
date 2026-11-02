@@ -1,10 +1,10 @@
 import './App.css';
 import { useEffect, useState } from "react";
-import { filterTasks } from "./utils/taskUtils";
+import { filterTasks, sortTasks } from "./utils/taskUtils";
 import TaskList from "./components/TaskList/TaskList";
 import TaskFilter from "./components/TaskFilter/TaskFilter";
 import TaskForm from './components/TaskForm/TaskForm';
-import type { Task, TaskStatus, TaskFormData , SortOption, TaskPriority} from "./types";
+import type { Task, TaskStatus, TaskFormData, SortOption, TaskPriority } from "./types";
 import DashboardStats from "./components/DashboardStats/DashboardStats";
 
 
@@ -128,28 +128,7 @@ export default function App() {
 
 
   // Sort filtered tasks by due date, priority, or title
-  const sortedTasks = [...filteredTasks].sort((a, b) => {
-    if (sortBy === "dueDate") {
-      return a.dueDate.localeCompare(b.dueDate);
-    }
-
-    if (sortBy === "priority") {
-      const priorityOrder = {
-        high: 1,
-        medium: 2,
-        low: 3
-      };
-
-      return priorityOrder[a.priority] - priorityOrder[b.priority];
-    }
-
-    if (sortBy === "title") {
-      return a.title.localeCompare(b.title);
-    }
-
-    return 0;
-  });
-
+  const sortedTasks = sortTasks(filteredTasks, sortBy);
 
   // Calculate dashboard statistics
   const totalTasks = tasks.length;
@@ -235,7 +214,7 @@ export default function App() {
           onSortChange={setSortBy}
         />
 
-        
+
         <div className="tasklist-box">
           <TaskList
             // tasks={filteredTasks}
