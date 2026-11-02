@@ -36,6 +36,9 @@ export interface TaskFilterProps {
   }) => void;
   searchTerm: string;
   onSearchChange: (value: string) => void;
+   // Sorting properties
+  sortBy: "dueDate" | "priority" | "title";
+  onSortChange: (value: "dueDate" | "priority" | "title") => void;
 }
 
 

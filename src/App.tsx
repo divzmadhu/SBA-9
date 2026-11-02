@@ -239,9 +239,11 @@ export default function App() {
           onFilterChange={(newFilters) => setFilters(newFilters)}
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
 
-        <div className="task-sort">
+        {/* <div className="task-sort">
           <label htmlFor="sort-tasks">Sort by:</label>
           <select
             id="sort-tasks"
@@ -252,7 +254,7 @@ export default function App() {
             <option value="priority">Priority</option>
             <option value="title">Title</option>
           </select>
-        </div>
+        </div> */}
 
 
         <div className="tasklist-box">

@@ -59,7 +59,27 @@ export default function TaskFilter(props: TaskFilterProps) {
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
                     </select>
+                </div>                    
+
+               {/* Sort tasks */}
+
+                <div>
+                    <label htmlFor="sort-tasks">Sort by:</label>
+                    <select
+                        id="sort-tasks"
+                        value={props.sortBy}
+                        onChange={(event) =>
+                            props.onSortChange(
+                                event.target.value as "dueDate" | "priority" | "title"
+                            )
+                        }
+                    >
+                        <option value="dueDate">Due Date</option>
+                        <option value="priority">Priority</option>
+                        <option value="title">Title</option>
+                    </select>
                 </div>
+
                 <div className="filter-search">
                     <label htmlFor="task-search">Search:</label>
                     <input
