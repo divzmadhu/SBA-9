@@ -88,6 +88,25 @@ export default function TaskFilter(props: TaskFilterProps) {
                     />
                 </div>
             </div>
+
+            {(selectedStatus || selectedPriority || props.searchTerm) && (
+                <div className="active-filters">
+                    <strong>Active filters:</strong>
+
+                    {selectedStatus && (
+                        <span>Status: {selectedStatus}</span>
+                    )}
+
+                    {selectedPriority && (
+                        <span>Priority: {selectedPriority}</span>
+                    )}
+
+                    {props.searchTerm && (
+                        <span>Search: {props.searchTerm}</span>
+                    )}
+                </div>
+            )}
+
         </div >
     );
 }

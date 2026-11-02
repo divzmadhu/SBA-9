@@ -230,3 +230,19 @@ gap: 16px;
     font-size: 13px;
     margin: 0;
 }
+
+/* Display currently applied task filters */
+.active-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.active-filters span {
+    background-color: #e8f0fe;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
