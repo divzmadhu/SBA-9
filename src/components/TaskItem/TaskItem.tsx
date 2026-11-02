@@ -1,4 +1,5 @@
 import type { TaskItemProps,TaskStatus  } from "../../types";
+import { formatDate } from "../../utils/dateUtils";
 
 
 export default function TaskItem(props: TaskItemProps) {
@@ -44,7 +45,7 @@ export default function TaskItem(props: TaskItemProps) {
                     </p>
 
                    
-                    <p>Due : {props.task.dueDate}</p>
+                    <p>Due: {formatDate(props.task.dueDate)}</p>
                 </div>
 
                 {/* Style the delete button to stand out. */}

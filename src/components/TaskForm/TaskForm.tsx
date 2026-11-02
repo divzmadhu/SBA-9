@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { TaskFormProps, TaskPriority } from "../../types";
 import { validateTaskForm } from "../../utils/validationUtils";
 
+
 export default function TaskForm(props: TaskFormProps) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -52,7 +53,7 @@ export default function TaskForm(props: TaskFormProps) {
         if (errors.titleError || errors.dueDateError) {
             return;
         }
-        
+
         if (props.taskToEdit) {
             // Update the selected task
             props.onUpdateTask(props.taskToEdit.id, taskData);
