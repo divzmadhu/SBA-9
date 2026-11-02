@@ -1,4 +1,4 @@
-import type { TaskItemProps } from "../../types";
+import type { TaskItemProps,TaskStatus  } from "../../types";
 
 
 export default function TaskItem(props: TaskItemProps) {
@@ -6,7 +6,7 @@ export default function TaskItem(props: TaskItemProps) {
 
 
         // <h2>Task Item</h2>
-        <>
+        
 
             <div className="task-item">
 
@@ -23,7 +23,7 @@ export default function TaskItem(props: TaskItemProps) {
                             onChange={(event) =>
                                 props.onStatusChange(
                                     props.task.id,
-                                    event.target.value as "pending" | "in-progress" | "completed"
+                                    event.target.value as  TaskStatus
                                 )
                             }
                         >
@@ -43,7 +43,7 @@ export default function TaskItem(props: TaskItemProps) {
                         Priority: {props.task.priority}
                     </p>
 
-                    {/* <p>Priority: {props.task.priority}</p> */}
+                   
                     <p>Due : {props.task.dueDate}</p>
                 </div>
 
@@ -64,7 +64,7 @@ export default function TaskItem(props: TaskItemProps) {
 
                 </div>
             </div>
-        </>
+        
 
     );
 }

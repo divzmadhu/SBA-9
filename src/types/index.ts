@@ -71,5 +71,13 @@ export interface TaskFormProps {
   taskToEdit?: Task;
 }
 
+// DashboardStats
+export interface DashboardStatsProps {
+    totalTasks: number;
+    pendingTasks: number;
+    inProgressTasks: number;
+    completedTasks: number;
+}
+
 
 

@@ -1,9 +1,5 @@
-interface DashboardStatsProps {
-    totalTasks: number;
-    pendingTasks: number;
-    inProgressTasks: number;
-    completedTasks: number;
-}
+import type { DashboardStatsProps } from "../../types";
+
 
 export default function DashboardStats(props: DashboardStatsProps) {
     return (
