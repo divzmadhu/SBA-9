@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import TaskList from "./components/TaskList/TaskList";
 import TaskFilter from "./components/TaskFilter/TaskFilter";
 import TaskForm from './components/TaskForm/TaskForm';
-import type { Task, TaskStatus, TaskFormData } from "./types";
+import type { Task, TaskStatus, TaskFormData , SortOption, TaskPriority} from "./types";
 import DashboardStats from "./components/DashboardStats/DashboardStats";
 
 
@@ -109,14 +109,15 @@ export default function App() {
 
   const [filters, setFilters] = useState<{
     status?: TaskStatus;
-    priority?: "low" | "medium" | "high";
+    priority?: TaskPriority;
+
   }>({});
 
   // Stores the text entered in the task search box
   const [searchTerm, setSearchTerm] = useState("");
 
   // Stores the selected sorting option
-  const [sortBy, setSortBy] = useState("dueDate");
+  const [sortBy, setSortBy] = useState<SortOption>("dueDate");
 
   // const filteredTasks = tasks.filter((task) => {
   //   return !filters.status || task.status === filters.status;
@@ -243,20 +244,7 @@ export default function App() {
           onSortChange={setSortBy}
         />
 
-        {/* <div className="task-sort">
-          <label htmlFor="sort-tasks">Sort by:</label>
-          <select
-            id="sort-tasks"
-            value={sortBy}
-            onChange={(event) => setSortBy(event.target.value)}
-          >
-            <option value="dueDate">Due Date</option>
-            <option value="priority">Priority</option>
-            <option value="title">Title</option>
-          </select>
-        </div> */}
-
-
+        
         <div className="tasklist-box">
           <TaskList
             // tasks={filteredTasks}

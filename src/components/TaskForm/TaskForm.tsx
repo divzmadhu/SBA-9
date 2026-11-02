@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import type { TaskFormProps } from "../../types";
+import type { TaskFormProps, TaskPriority } from "../../types";
 
 export default function TaskForm(props: TaskFormProps) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
+    const [priority, setPriority] = useState<TaskPriority>("medium");
     const [dueDate, setDueDate] = useState("");
 
     // Store validation error messages for the form fields
@@ -43,11 +43,7 @@ export default function TaskForm(props: TaskFormProps) {
             dueDate: dueDate
         }
 
-        // if (!title.trim() || !dueDate) {
-        //     alert("Please enter a task title and a due Date.");
-        //     return;
-        // }
-
+        
         // Clear previous validation errors
         setTitleError("");
         setDueDateError("");
@@ -107,7 +103,7 @@ export default function TaskForm(props: TaskFormProps) {
                     <select
                         id="task-priority"
                         value={priority}
-                        onChange={(event) => setPriority(event.target.value as "low" | "medium" | "high")}
+                        onChange={(event) => setPriority(event.target.value as TaskPriority)}
                     >
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>

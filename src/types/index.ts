@@ -2,12 +2,19 @@
 // TaskList
 export type TaskStatus = 'pending' | 'in-progress' | 'completed';
 
+// Available task priorities
+export type TaskPriority = 'low' | 'medium' | 'high';
+
+// Available sorting options
+export type SortOption = 'dueDate' | 'priority' | 'title';
+
 export interface Task {
   id: string;
   title: string;
   description: string;
   status: TaskStatus;
-  priority: 'low' | 'medium' | 'high';
+  // priority: 'low' | 'medium' | 'high';
+  priority: TaskPriority;
   dueDate: string;
 }
 
@@ -32,14 +39,17 @@ export interface TaskItemProps {
 export interface TaskFilterProps {
   onFilterChange: (filters: {
     status?: TaskStatus;
-    priority?: 'low' | 'medium' | 'high';
+    // priority?: 'low' | 'medium' | 'high';
+    priority?: TaskPriority;
   }) => void;
   searchTerm: string;
   onSearchChange: (value: string) => void;
-   // Sorting properties
-  sortBy: "dueDate" | "priority" | "title";
-  onSortChange: (value: "dueDate" | "priority" | "title") => void;
-}
+  // Sorting properties
+  sortBy: SortOption;
+  onSortChange: (value: SortOption) => void;
+//   sortBy: "dueDate" | "priority" | "title";
+//   onSortChange: (value: "dueDate" | "priority" | "title") => void;
+ }
 
 
 //TaskForm
@@ -50,7 +60,8 @@ export interface TaskFilterProps {
 export interface TaskFormData {
   title: string;
   description: string,
-  priority: "low" | "medium" | "high";
+  // priority: "low" | "medium" | "high";
+  priority: TaskPriority;
   dueDate: string;
 }
 
