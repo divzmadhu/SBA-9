@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from "react";
+import { exportTasks } from "./utils/exportUtils";
 import { filterTasks, sortTasks } from "./utils/taskUtils";
 import TaskList from "./components/TaskList/TaskList";
 import TaskFilter from "./components/TaskFilter/TaskFilter";
@@ -204,6 +205,10 @@ export default function App() {
           inProgressTasks={inProgressTasks}
           completedTasks={completedTasks}
         />
+
+        <button onClick={() => exportTasks(tasks)}>
+          Export Tasks
+        </button>
 
 
         <TaskFilter
