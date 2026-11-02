@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from "react";
+import { importTasks } from "./utils/importUtils";
 import { exportTasks } from "./utils/exportUtils";
 import { filterTasks, sortTasks } from "./utils/taskUtils";
 import TaskList from "./components/TaskList/TaskList";
@@ -191,6 +192,33 @@ export default function App() {
 
     setEditingTaskId(null);
   }
+
+  // Handle importing tasks from a JSON file
+  async function handleImport(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    try {
+      const importedTasks = await importTasks(file);
+
+      const tasksToAdd = importedTasks.map((task) => ({
+        ...task,
+        id: crypto.randomUUID()
+      }));
+
+      setTasks((currentTasks) => [...currentTasks, ...tasksToAdd]);
+
+      alert("Tasks imported successfully!");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to import tasks.");
+    }
+
+    event.target.value = "";
+  }
+
   return (
     <div>
       {/* <h1>Lab 3- Lists, Keys, and Conditionals</h1> */}
@@ -209,6 +237,16 @@ export default function App() {
         <button onClick={() => exportTasks(tasks)}>
           Export Tasks
         </button>
+
+        {/* Allow users to import tasks from a JSON file */}
+
+        <label htmlFor="import-tasks">Import Tasks:</label>
+        <input
+          type="file"
+          id="import-tasks"
+          accept=".json,application/json"
+          onChange={handleImport}
+        />
 
 
         <TaskFilter
